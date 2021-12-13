@@ -1,6 +1,9 @@
+import org.springframework.boot.gradle.tasks.run.BootRun
+
 plugins {
     application
     java
+    war
     id("org.springframework.boot") version("2.6.1")
 }
 
@@ -12,6 +15,7 @@ java {
 
 version = "1.0.0"
 group = "nl.averageflow.pokedexjava"
+var applicationMainClass = "nl.averageflow.pokedexjava.PokedexApplication"
 
 repositories {
     mavenCentral()
@@ -32,13 +36,11 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-application {
-    // Define the main class for the application.
-    mainClass.set("nl.averageflow.pokedexjava.PokedexApplication")
+tasks.getByName<BootRun>("bootRun") {
+    main = applicationMainClass
+    sourceResources(sourceSets["main"])
 }
 
-val jar by tasks.getting(Jar::class) {
-    manifest {
-        attributes["Main-Class"] = "nl.averageflow.pokedexjava.PokedexApplication"
-    }
+application {
+    mainClass.set(applicationMainClass)
 }

@@ -2,19 +2,17 @@ version: '3.9'
 
 services:
   db:
-    container_name: "PostgresWarehouseDB"
     image: "postgres:14.0-alpine"
     restart: always
     environment:
-      POSTGRES_USER: warehouse_user
-      POSTGRES_PASSWORD: warehouse_user_password
-      POSTGRES_DB: warehouse_db
+      POSTGRES_USER: pokedex_user
+      POSTGRES_PASSWORD: pokedex_user_password
+      POSTGRES_DB: pokedex_db
     ports:
       - "5432:5432"
     volumes:
       - "./storage/migrations:/docker-entrypoint-initdb.d/"
   app:
-    container_name: "SpringWarehouse"
     build:
       dockerfile: Dockerfile
       context: .
@@ -25,7 +23,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/warehouse_db"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/pokedex_db"
 
 
 

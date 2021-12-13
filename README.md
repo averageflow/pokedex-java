@@ -1,4 +1,3 @@
 # Pokedex Java
 
-Spring Warehouse is a Java Spring Boot application that has the purpose of managing products and articles in
-your warehouse.
+Pokedex implementation with Java Spring Boot and Thymeleaf HTML templates. Using [the PokeAPI](https://pokeapi.co/).

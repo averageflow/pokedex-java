@@ -4,6 +4,7 @@ COPY . /home/gradle/buildWorkspace
 WORKDIR /home/gradle/buildWorkspace
 
 # Use Docker application.properties with environment variables
+RUN rm -rf /home/gradle/buildWorkspacce/app/build
 RUN rm /home/gradle/buildWorkspace/app/src/main/resources/application.properties
 RUN mv /home/gradle/buildWorkspace/app/src/main/resources/application-docker.properties /home/gradle/buildWorkspace/app/src/main/resources/application.properties
 

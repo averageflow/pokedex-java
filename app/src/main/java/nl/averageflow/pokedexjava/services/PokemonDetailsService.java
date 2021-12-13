@@ -2,6 +2,7 @@ package nl.averageflow.pokedexjava.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.averageflow.pokedexjava.dto.PokedexList;
+import nl.averageflow.pokedexjava.dto.Pokemon;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -21,7 +22,8 @@ public class PokemonDetailsService {
     public PokedexList getPokedexEntries() throws ExecutionException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://pokeapi.co/api/v2/pokemon/"))
+                //.uri(URI.create("https://pokeapi.co/api/v2/pokemon/"))
+                .uri(URI.create("https://pokeapi.co/api/v2/pokemon/?limit=20"))
                 .timeout(Duration.ofMinutes(2))
                 .header("Content-Type", "application/json")
                 //.POST(HttpRequest.BodyPublishers.ofFile(Paths.get("file.json")))
@@ -45,11 +47,10 @@ public class PokemonDetailsService {
         }
 
 
-        assert pokedexList != null;
         return pokedexList;
     }
 
-    public Iterable<String> getPokedexEntryDetails(Iterable<String> urls){
+    public Iterable<Pokemon> getPokedexEntryDetails(Iterable<String> urls){
         HttpClient client = HttpClient.newHttpClient();
         List<CompletableFuture<String>> futuresList = StreamSupport.stream(urls.spliterator(), true).map(url -> {
             HttpRequest pokedexListItemRequest = HttpRequest.newBuilder()
@@ -64,7 +65,18 @@ public class PokemonDetailsService {
                     .thenApply(HttpResponse::body);
         }).toList();
 
-        Iterable<String> test = futuresList.stream().map(CompletableFuture::join).collect(Collectors.toList());
-        return test;
+        Iterable<String> responseBodies = futuresList.stream().map(CompletableFuture::join).collect(Collectors.toList());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        return StreamSupport.stream(responseBodies.spliterator(), true).map(item -> {
+            try {
+                return objectMapper.readValue(item, Pokemon.class);
+            } catch (final Exception e) {
+                System.out.println(e);
+            }
+
+            return null;
+        }).toList();
     }
 }

@@ -20,11 +20,31 @@
                 </picture>
                 <div class="card-body">
                     <h5 class="h4 card-title text-capitalize" th:text="${pokemon.name}"></h5>
-                    <p class="card-text">
+                    <div class="card-text">
                         <span th:each="pokemonType: ${pokemon.types}">
-                            <small class="text-uppercase" th:text="${pokemonType.type.name}"></small>
+                            <span class="text-uppercase" th:switch="${pokemonType.type.name}">
+                                <span th:case="'normal'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(112, 112, 72);"></span>
+                                <span th:case="'fire'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(172, 79, 12);"></span>
+                                <span th:case="'water'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(14, 50, 137);"></span>
+                                <span th:case="'grass'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(95, 144, 45);"></span>
+                                <span th:case="'electric'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(174, 140, 6);"></span>
+                                <span th:case="'ice'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(37, 99, 99);"></span>
+                                <span th:case="'fighting'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(154, 38, 32);"></span>
+                                <span th:case="'poison'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(128, 51, 128);"></span>
+                                <span th:case="'ground'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(133, 105, 27);"></span>
+                                <span th:case="'flying'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(39, 15, 112);"></span>
+                                <span th:case="'psychic'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(149, 6, 49);"></span>
+                                <span th:case="'bug'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(134, 147, 26);"></span>
+                                <span th:case="'rock'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(147, 128, 45);"></span>
+                                <span th:case="'ghost'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(90, 70, 122);"></span>
+                                <span th:case="'dark'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(90, 70, 58);"></span>
+                                <span th:case="'dragon'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(53, 6, 169);"></span>
+                                <span th:case="'steel'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(49, 49, 73);"></span>
+                                <span th:case="'fairy'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(86, 18, 25);"></span>
+                            </span>
+
                         </span>
-                    </p>
+                    </div>
                     <p class="card-text">
                         <details>
                             <summary class="text-muted">More details</summary>

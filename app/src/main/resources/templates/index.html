@@ -7,5 +7,12 @@
 </head>
 <body>
 <h4 th:text="${myAttribute}"></h4>
+
+<section>
+    <article th:each="pokemon: ${pokeData}">
+        <p th:text="${pokemon}"></p>
+    </article>
+</section>
+
 </body>
 </html>

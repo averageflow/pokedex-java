@@ -2,7 +2,10 @@ plugins {
     application
     java
     id("org.springframework.boot") version("2.6.1")
+    id("com.google.cloud.tools.jib") version("3.1.4")  
 }
+
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }

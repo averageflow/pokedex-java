@@ -11,13 +11,13 @@ public class Pokemon {
 
     private String name;
 
-    @JsonProperty(value="base_experience")
+    @JsonProperty(value = "base_experience")
     private Integer baseExperience;
 
     // pokemon height in decimeters
     private Integer height;
 
-    @JsonProperty(value="is_default")
+    @JsonProperty(value = "is_default")
     private Boolean isDefault;
 
     private Integer order;
@@ -25,7 +25,7 @@ public class Pokemon {
     // pokemon weight in hectograms
     private Integer weight;
 
-    @JsonProperty(value="location_area_encounters")
+    @JsonProperty(value = "location_area_encounters")
     private String locationAreaEncounters;
 
     private PokemonSprite sprites;

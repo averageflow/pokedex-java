@@ -5,29 +5,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PokemonSprite {
-    @JsonProperty(value="front_default")
+    @JsonProperty(value = "front_default")
     private String frontDefault;
 
-    @JsonProperty(value="front_shiny")
+    @JsonProperty(value = "front_shiny")
     private String frontShiny;
 
-    @JsonProperty(value="front_female")
+    @JsonProperty(value = "front_female")
     private String frontFemale;
 
-    @JsonProperty(value="front_shiny_female")
+    @JsonProperty(value = "front_shiny_female")
     private String frontShinyFemale;
 
-    @JsonProperty(value="back_default")
+    @JsonProperty(value = "back_default")
     private String backDefault;
 
-    @JsonProperty(value="back_shiny")
+    @JsonProperty(value = "back_shiny")
     private String backShiny;
 
-    @JsonProperty(value="back_female")
+    @JsonProperty(value = "back_female")
     private String backFemale;
 
-    @JsonProperty(value="back_shiny_female")
+    @JsonProperty(value = "back_shiny_female")
     private String backShinyFemale;
+
+    public PokemonSprite() {
+    }
 
     public String getFrontDefault() {
         return frontDefault;
@@ -60,6 +63,4 @@ public class PokemonSprite {
     public String getBackShinyFemale() {
         return backShinyFemale;
     }
-
-    public PokemonSprite(){}
 }

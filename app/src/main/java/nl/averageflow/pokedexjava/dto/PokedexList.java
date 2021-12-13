@@ -9,7 +9,7 @@ public class PokedexList {
     private String next;
     private String previous;
 
-    public PokedexList(){
+    public PokedexList() {
 
     }
 

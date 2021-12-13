@@ -4,7 +4,8 @@ public class PokedexListItem {
     private String name;
     private String url;
 
-    public PokedexListItem(){}
+    public PokedexListItem() {
+    }
 
     public String getName() {
         return name;

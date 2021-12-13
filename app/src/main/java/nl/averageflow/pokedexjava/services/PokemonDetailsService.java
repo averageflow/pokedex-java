@@ -19,9 +19,9 @@ import java.util.stream.StreamSupport;
 @Service
 public class PokemonDetailsService {
 
-    public PokedexList getPokedexEntries() throws ExecutionException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
+    public static PokedexList getPokedexEntries() throws ExecutionException, InterruptedException {
+        final HttpClient client = HttpClient.newHttpClient();
+        final HttpRequest request = HttpRequest.newBuilder()
                 //.uri(URI.create("https://pokeapi.co/api/v2/pokemon/"))
                 .uri(URI.create("https://pokeapi.co/api/v2/pokemon/?limit=20"))
                 .timeout(Duration.ofMinutes(2))
@@ -30,34 +30,28 @@ public class PokemonDetailsService {
                 .GET()
                 .build();
 
-        CompletableFuture<String> responseBody = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+        final CompletableFuture<String> responseBody = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body);
-        //.thenAccept(System.out::println);
 
-        String pokeList = responseBody.get();
-
+        final String pokeList = responseBody.get();
         final ObjectMapper objectMapper = new ObjectMapper();
 
-        PokedexList pokedexList = null;
-
         try {
-            pokedexList = objectMapper.readValue(pokeList, PokedexList.class);
+            return objectMapper.readValue(pokeList, PokedexList.class);
         } catch (final Exception e) {
             System.out.println(e);
         }
 
-
-        return pokedexList;
+        return null;
     }
 
-    public Iterable<Pokemon> getPokedexEntryDetails(Iterable<String> urls){
-        HttpClient client = HttpClient.newHttpClient();
-        List<CompletableFuture<String>> futuresList = StreamSupport.stream(urls.spliterator(), true).map(url -> {
-            HttpRequest pokedexListItemRequest = HttpRequest.newBuilder()
+    public static Iterable<Pokemon> getPokedexEntryDetails(final Iterable<String> urls) {
+        final HttpClient client = HttpClient.newHttpClient();
+        final List<CompletableFuture<String>> futuresList = StreamSupport.stream(urls.spliterator(), true).map(url -> {
+            final HttpRequest pokedexListItemRequest = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .timeout(Duration.ofMinutes(2))
                     .header("Content-Type", "application/json")
-                    //.POST(HttpRequest.BodyPublishers.ofFile(Paths.get("file.json")))
                     .GET()
                     .build();
 
@@ -65,9 +59,9 @@ public class PokemonDetailsService {
                     .thenApply(HttpResponse::body);
         }).toList();
 
-        Iterable<String> responseBodies = futuresList.stream().map(CompletableFuture::join).collect(Collectors.toList());
+        final Iterable<String> responseBodies = futuresList.stream().map(CompletableFuture::join).collect(Collectors.toList());
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        final ObjectMapper objectMapper = new ObjectMapper();
 
         return StreamSupport.stream(responseBodies.spliterator(), true).map(item -> {
             try {

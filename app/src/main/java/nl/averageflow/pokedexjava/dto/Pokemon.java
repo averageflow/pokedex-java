@@ -28,6 +28,8 @@ public class Pokemon {
     @JsonProperty(value = "location_area_encounters")
     private String locationAreaEncounters;
 
+    private Iterable<PokemonNestedType> types;
+
     private PokemonSprite sprites;
 
     public String getLocationAreaEncounters() {
@@ -66,6 +68,10 @@ public class Pokemon {
         return sprites;
     }
 
+    public Iterable<PokemonNestedType> getTypes() {
+        return types;
+    }
+
 
 //    private List<?> abilities;
 //
@@ -98,5 +104,4 @@ public class Pokemon {
 //    private List<?> stats;
 //
 //
-//    private List<?> types;
 }

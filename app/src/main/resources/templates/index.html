@@ -19,8 +19,12 @@
                     <img loading="lazy" th:alt="${pokemon.name}" th:src="${pokemon.sprites.frontDefault}">
                 </picture>
                 <div class="card-body">
-                    <h5 class="h5 card-title" th:text="${pokemon.name}"></h5>
-
+                    <h5 class="h4 card-title text-capitalize" th:text="${pokemon.name}"></h5>
+                    <p class="card-text">
+                        <span th:each="pokemonType: ${pokemon.types}">
+                            <small class="text-uppercase" th:text="${pokemonType.type.name}"></small>
+                        </span>
+                    </p>
                     <p class="card-text">
                         <details>
                             <summary class="text-muted">More details</summary>

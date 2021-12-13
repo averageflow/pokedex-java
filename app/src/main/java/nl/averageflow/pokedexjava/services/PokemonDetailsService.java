@@ -22,11 +22,9 @@ public class PokemonDetailsService {
     public static PokedexList getPokedexEntries() throws ExecutionException, InterruptedException {
         final HttpClient client = HttpClient.newHttpClient();
         final HttpRequest request = HttpRequest.newBuilder()
-                //.uri(URI.create("https://pokeapi.co/api/v2/pokemon/"))
                 .uri(URI.create("https://pokeapi.co/api/v2/pokemon/?limit=20"))
                 .timeout(Duration.ofMinutes(2))
                 .header("Content-Type", "application/json")
-                //.POST(HttpRequest.BodyPublishers.ofFile(Paths.get("file.json")))
                 .GET()
                 .build();
 

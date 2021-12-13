@@ -7,7 +7,6 @@ plugins {
     id("org.springframework.boot") version("2.6.1")
 }
 
-
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
@@ -30,7 +29,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.1")
     testImplementation("junit:junit:4.13.2")
 }
-
 
 tasks.named<Test>("test") {
     useJUnitPlatform()

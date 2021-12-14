@@ -1,7 +1,7 @@
 # Pokedex Java
 Pokedex implementation with Java Spring Boot and Thymeleaf HTML templates. Using [the PokeAPI](https://pokeapi.co/).
 
-![Demo screenshot of the application](https://i.ibb.co/3cVFqrF/Schermafdruk-2021-12-13-15-05-49.png)
+![Demo screenshot of the application](https://i.ibb.co/P5mkJT6/Schermafdruk-2021-12-14-09-09-34.png)
 
 
 ### Technologies used
